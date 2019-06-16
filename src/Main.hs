@@ -21,4 +21,4 @@ main = do
    else
       let name = head args in
       withFile name WriteMode (\handle -> do
-         hPutStrLn handle $ результат  грамматикаМУР128 Программа форматВывода)
+         hPutStrLn handle $ результат  грамматикаМУР128 Register форматВывода)

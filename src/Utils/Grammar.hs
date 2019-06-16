@@ -46,17 +46,16 @@ data ТерминалыМУР128 =
   Prescision  | Pluse         | Minus      | Mul        | Div       |
   Mod         | Xor           | Or         | Add        | Not       |
   Single      | Double        | Quatro     | Extended   | Integer   |
-  ExpSign
-
-
+  ExpSign     | Format
  deriving(Eq,Show,Ord,Read,Enum,Bounded)
 
 data НетерминалыМУР128 =
   Programm       | EntryPoint  | Body     | Section         |
-  Attr           | Args
+  Attr           | Args        | Register | Command
  deriving(Eq,Show,Ord,Read,Enum,Bounded)
 
 грамматикаМУР128 :: [Правило НетерминалыМУР128 ТерминалыМУР128]
 грамматикаМУР128 =
-   [ 
+   [
+x
    ]
