@@ -51,11 +51,42 @@ data ТерминалыМУР128 =
 
 data НетерминалыМУР128 =
   Programm       | EntryPoint  | Body     | Section         |
-  Attr           | Args        | Register | Command
+  Attr           | Args        | Register | Command         |
+  Delimiter
  deriving(Eq,Show,Ord,Read,Enum,Bounded)
 
 грамматикаМУР128 :: [Правило НетерминалыМУР128 ТерминалыМУР128]
 грамматикаМУР128 =
    [
-x
+    Programm --> [Нетерминал Body],
+    Body --> [Нетерминал Register, Нетерминал Command, Нетерминал Args],
+    Register --> [Терминал RInt],
+    Register --> [Терминал FInt],
+    Register --> [Терминал SP],
+    Register --> [Терминал BP],
+    Command --> [Терминал Movim],
+    Command --> [Терминал LoadReg],
+    Command --> [Терминал StoreReg],
+    Command --> [Терминал PushPopIm],
+    Command --> [Терминал Arifm3Args],
+    Command --> [Терминал MovRegF],
+    Command --> [Терминал StoreRegF],
+    Command --> [Терминал JumprReg2],
+    Command --> [Терминал LoadRegF],
+    Command --> [Терминал Pup],
+    Command --> [Терминал Arifm3F],
+    Command --> [Терминал Arifm2F],
+    Command --> [Терминал Mul2f],
+    Command --> [Терминал JumpReg1],
+    Command --> [Терминал JumprReg2],
+    Command --> [Терминал JumpCC],
+    Command --> [Терминал JumpCCReg],
+    Command --> [Терминал CallRel],
+    Command --> [Терминал CellCon],
+    Command --> [Терминал Ret],
+    Command --> [Терминал Reta],
+    Command --> [Терминал RetaCon],
+    Attr --> [Терминал Readable, Терминал Writable, Терминал Executable],
+    Delimiter --> [Терминал Comma, Терминал OpenBrace, Терминал CloseBrace, Терминал Prescision, Терминал Pluse, Терминал Minus, Терминал Mul, Терминал Div],
+    Args --> [Терминал Single, Терминал Double, Терминал Quatro, Терминал Extended, Терминал Integer]
    ]
