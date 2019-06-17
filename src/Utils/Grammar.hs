@@ -46,20 +46,24 @@ data ТерминалыМУР128 =
   Prescision  | Pluse         | Minus      | Mul        | Div       |
   Mod         | Xor           | Or         | Add        | Not       |
   Single      | Double        | Quatro     | Extended   | Integer   |
-  ExpSign     | Format
+  ExpSign     | Format        
  deriving(Eq,Show,Ord,Read,Enum,Bounded)
 
 data НетерминалыМУР128 =
   Programm       | EntryPoint  | Body     | Section         |
   Attr           | Args        | Register | Command         |
-  Delimiter
+  Delimiter      | SectionBody
  deriving(Eq,Show,Ord,Read,Enum,Bounded)
 
 грамматикаМУР128 :: [Правило НетерминалыМУР128 ТерминалыМУР128]
 грамматикаМУР128 =
    [
-    Programm --> [Нетерминал Body],
-    Body --> [Нетерминал Register, Нетерминал Command, Нетерминал Args],
+    Programm --> [Терминал Format, Терминал Id, Терминал OpenBrace, Нетерминал EntryPoint, Нетерминал Body, Терминал CloseBrace],
+    Body --> [Нетерминал Section],
+    Body --> [Нетерминал Body, Нетерминал Section],
+    EntryPoint --> [Терминал Id],
+    Section --> [Нетерминал Attr, Нетерминал SectionBody],
+    SectionBody --> [Нетерминал Register, Нетерминал Command, Нетерминал SectionBody, Нетерминал Delimiter, Нетерминал Args],
     Register --> [Терминал RInt],
     Register --> [Терминал FInt],
     Register --> [Терминал SP],

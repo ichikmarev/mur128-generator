@@ -1,4 +1,4 @@
-e﻿{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE FlexibleInstances #-}
 
 module SLR1tables (
    ФорматСтраницы(..),
